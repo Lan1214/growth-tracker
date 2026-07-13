@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成长记录 - Growth Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🌱 成长追踪</div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-tab="dashboard">仪表板</a></li>
+                <li><a href="#" class="nav-link" data-tab="records">记录</a></li>
+                <li><a href="#" class="nav-link" data-tab="achievements">成就</a></li>
+                <li><a href="#" class="nav-link" data-tab="stats">统计</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- Dashboard 标签页 -->
+        <section id="dashboard" class="tab-content active">
+            <h2>我的成长仪表板</h2>
+            
+            <!-- 用户信息卡片 -->
+            <div class="user-card">
+                <div class="user-info">
+                    <h3 id="userName">新手冒险家</h3>
+                    <p class="level">等级 <span id="userLevel">1</span></p>
+                </div>
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">总经验值</span>
+                        <span class="stat-value" id="totalXP">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">成就数</span>
+                        <span class="stat-value" id="achievementCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">记录数</span>
+                        <span class="stat-value" id="recordCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 经验值进度条 -->
+            <div class="xp-progress">
+                <h3>当前等级进度</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="xpFill" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text"><span id="currentXP">0</span> / <span id="nextLevelXP">100</span> XP</p>
+                </div>
+            </div>
+
+            <!-- 最近记录 -->
+            <div class="recent-section">
+                <h3>最近的成长记录</h3>
+                <div id="recentRecords" class="recent-records">
+                    <p class="empty-message">还没有记录呢，快添加一条吧！</p>
+                </div>
+            </div>
+
+            <!-- 即将解锁的成就 -->
+            <div class="upcoming-section">
+                <h3>即将解锁的成就</h3>
+                <div id="upcomingAchievements" class="upcoming-achievements">
+                    <p class="empty-message">没有即将解锁的成就</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Records 标签页 -->
+        <section id="records" class="tab-content">
+            <h2>成长记录</h2>
+
+            <!-- 添加记录表单 -->
+            <div class="add-record-form">
+                <h3>添加新记录</h3>
+                <form id="recordForm">
+                    <div class="form-group">
+                        <label>标题</label>
+                        <input type="text" id="recordTitle" placeholder="记录的标题" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>分类</label>
+                        <select id="recordCategory" required>
+                            <option value="">选择分类</option>
+                            <option value="learning">📚 学习</option>
+                            <option value="coding">💻 编程</option>
+                            <option value="sports">🏃 运动</option>
+                            <option value="reading">📖 阅读</option>
+                            <option value="personal">🎯 个人</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>描述</label>
+                        <textarea id="recordDescription" placeholder="详细描述你的成长记录" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>日期</label>
+                        <input type="date" id="recordDate" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">添加记录</button>
+                </form>
+            </div>
+
+            <!-- 记录列表 -->
+            <div class="records-list">
+                <h3>所有记录</h3>
+                <div id="recordsList" class="records">
+                    <p class="empty-message">还没有任何记录</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements 标签页 -->
+        <section id="achievements" class="tab-content">
+            <h2>成就系统</h2>
+
+            <!-- 成就网格 -->
+            <div id="achievementsGrid" class="achievements-grid">
+                <!-- 动态生成 -->
+            </div>
+        </section>
+
+        <!-- Stats 标签页 -->
+        <section id="stats" class="tab-content">
+            <h2>成长统计</h2>
+
+            <!-- 分类统计 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>📚 学习</h3>
+                    <p class="stat-number" id="statLearning">0</p>
+                    <p class="stat-label">条记录</p>
+                </div>
+                <div class="stat-card">
+                    <h3>💻 编程</h3>
+                    <p class="stat-number" id="statCoding">0</p>
+                    <p class="stat-label">条记录</p>
+                </div>
+                <div class="stat-card">
+                    <h3>🏃 运动</h3>
+                    <p class="stat-number" id="statSports">0</p>
+                    <p class="stat-label">条记录</p>
+                </div>
+                <div class="stat-card">
+                    <h3>📖 阅读</h3>
+                    <p class="stat-number" id="statReading">0</p>
+                    <p class="stat-label">条记录</p>
+                </div>
+                <div class="stat-card">
+                    <h3>🎯 个人</h3>
+                    <p class="stat-number" id="statPersonal">0</p>
+                    <p class="stat-label">条记录</p>
+                </div>
+            </div>
+
+            <!-- 成就统计 -->
+            <div class="achievements-stats">
+                <div class="stat-box">
+                    <h3>成就进度</h3>
+                    <p>已解锁: <span id="unlockedCount">0</span> / <span id="totalAchievements">0</span></p>
+                </div>
+                <div class="stat-box">
+                    <h3>总经验值</h3>
+                    <p id="totalXPStats">0</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 成就解锁弹窗 -->
+    <div id="achievementPopup" class="achievement-popup">
+        <div class="popup-content">
+            <div class="popup-icon">🏆</div>
+            <h2>成就解锁！</h2>
+            <p id="popupAchievementName">成就名称</p>
+            <p id="popupAchievementDesc">成就描述</p>
+            <p class="popup-xp">+<span id="popupXP">0</span> XP</p>
+            <button class="btn btn-primary" onclick="closeAchievementPopup()">太棒了！</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
